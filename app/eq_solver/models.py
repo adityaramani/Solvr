@@ -39,3 +39,28 @@ class Simultaneous(Equation):
 
         if c == 0:
             self.solution = None
+        else:
+            self.solution = {}
+            self.solution['x'] = a/c
+            self.solution['y'] = b/c
+
+
+class Quadratic(Equation):
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+
+    def solve(self):
+        this = self.variables
+
+        D = this['x']['coeff']**2  - 4*this['x2']['coeff'] * this['c']
+
+        if D < 0 :
+            this.solution = None
+        else:
+            D = D**0.5
+            x1 = (-this['x'] + D) / 2*this['x2']
+            x2 = (-this['x'] - D) / 2*this['x2']
+
+            this.solution = {}
+            this.solution['x1'] = x1
+            this.solution['x2'] = x2
