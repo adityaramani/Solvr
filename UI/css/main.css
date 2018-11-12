@@ -1832,7 +1832,8 @@ textarea {
       display: block;
       position: relative;
       width: 100%;
-      background: #1d1d1d;
+      border-radius: 30px;
+      background: #F2EFEA;
       overflow: hidden;
       -webkit-transition: 0.15s;
       transition: 0.15s;
