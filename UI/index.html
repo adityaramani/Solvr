@@ -412,7 +412,7 @@ http://miradontsoa.com
             <ul class="item-list swiper-wrapper">
               <!-- item -->
               <li class="slide-item swiper-slide">
-                <div class="item-wrapper ">
+                <div class="item-wrapper">
 
                   <div class="illustr eq-solver">
                   <div class="input-equation" id = "singleVarContainer" >
@@ -424,7 +424,7 @@ http://miradontsoa.com
                         
                       <!-- <span style="display:inline-block; width: 60px;"></span> -->
 
-                      <button ng-click="solveSingle($event)"> Solve!</button>
+                      <button ng-click="solveSingle($event)" > Solve!</button>
                     </form>
                   </div> 
                 </div>                  
@@ -434,7 +434,7 @@ http://miradontsoa.com
               <!-- item -->
               <li class="slide-item swiper-slide">
                 <div class="item-wrapper">
-                  <div class="illustr">
+                  <div class="illustr eq-solver">
                     <div class="input-equation" id="simultaneousEqContainer" >
                       <form id="simultaneousEq">
                         <input type="number" name="first_x_coeff" class="number-input" ng-model="data.first.x_coeff">
@@ -454,7 +454,7 @@ http://miradontsoa.com
                         <br/><br/> 
                           
                         <!-- <span style="display:inline-block; width: 60px;"></span> -->
-                        <button ng-click="solveSimul($event)" style="float:right"> Solve!</button>
+                        <button ng-click="solveSimul($event)" id="simultaneousSubmitBtn"> Solve!</button>
   
                       </form>
 

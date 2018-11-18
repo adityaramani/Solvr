@@ -357,7 +357,7 @@ app.controller('formCtrl', function($scope) {
     $scope.ripple = function(e,element,initText ,result) {
 
         $(".ripple").remove();
-        var cnt = $(element+"Container");
+		var cnt = $(element);
 		var posX = $(cnt).offset().left,
 		posY = $(cnt).offset().top,
 		buttonWidth = $(cnt).width(),
@@ -380,7 +380,7 @@ app.controller('formCtrl', function($scope) {
   
  
   // Add the ripples CSS and start the animation
-		$(".ripple").css({
+		  $(".ripple").css({
 		    width: buttonWidth,
 		    height: buttonHeight,
 		    top: y + 'px',
@@ -408,6 +408,7 @@ app.controller('formCtrl', function($scope) {
 
 	$scope.solveSimul =  function(e){
 		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
+		$("#simultaneousSubmitBtn").css("z-index", -2);
 		$scope.ripple(e, "#simultaneousEq", initText,"x  = 4");	
 	};
 });

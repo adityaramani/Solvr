@@ -53,11 +53,22 @@ input[type=number] {
   width: -moz-max-content;
 }
 
+
+
+#simultaneousSubmitBtn {
+    position: absolute;
+    left: 65%;
+    top: 20%;
+    font-size: 1.3em;
+    
+}
+
 .ripple {
   width: 0;
   height: 0;
   border-radius: 50%;
   background: #B5D99C;
+
   transform: scale(0);
   position: absolute;
   opacity: 1;
@@ -66,6 +77,15 @@ input[type=number] {
     animation: rippleDrop .6s linear;
 }
 
+
+#simultaneousEq{
+
+  font-size: 1.6em;
+  width: 30em;
+  text-align: left;
+  position: relative;
+  left: -50%;
+}
 @keyframes rippleDrop {
   100% {
     transform: scale(4);
@@ -83,11 +103,3 @@ input[type=number] {
   color: whitesmoke;
 }
 
-
-#simultaneousEq{
-
-  font-size: 2em;
-  width: max-content;
-  text-align: center;
-  
-}
