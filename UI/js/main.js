@@ -354,7 +354,7 @@ var app = angular.module('SolvrApp', []);
 app.controller('formCtrl', function($scope) {
 	$scope.data = null;
 
-    $scope.ripple = function(e,element,initText ,result) {
+    $scope.ripple = function(e,element,initText ,result,time) {
 
         $(".ripple").remove();
 		var cnt = $(element);
@@ -385,7 +385,7 @@ app.controller('formCtrl', function($scope) {
 		    height: buttonHeight,
 		    top: y + 'px',
 		    left: x + 'px'
-		}).addClass("rippleEffect");
+		}).addClass("rippleEffect"+element.slice(1));
 	
 		var text = document.createElement("h3");
 		text.className = "text-scrambler";
@@ -397,18 +397,18 @@ app.controller('formCtrl', function($scope) {
 			var fx = new TextScramble(el);
 			fx.setText(result)
 			// el.style.color = "white";
-		 }, 550);
+		 }, time);
 				
 	};
 
 	$scope.solveSingle =  function(e){
 		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
-		$scope.ripple(e, "#singleVar", initText,"x  = 4");	
+		$scope.ripple(e, "#singleVar", initText,"x  = 4", 550);	
 	};
 
 	$scope.solveSimul =  function(e){
 		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
 		$("#simultaneousSubmitBtn").css("z-index", -2);
-		$scope.ripple(e, "#simultaneousEq", initText,"x  = 4");	
+		$scope.ripple(e, "#simultaneousEq", initText,"x  = 4", 800);	
 	};
 });
