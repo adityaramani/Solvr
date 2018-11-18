@@ -10,11 +10,13 @@
 	position: relative;
 	height: 5em;
 	margin: 0 auto;
-	padding: 10px;
+	padding: 1em;
 	top:15%;
-	color: black;
-	text-align: center;
+	color: white;
+  text-align: center;
+  
 }
+
 
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -23,11 +25,20 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-appearance: none;
     appearance: none;
     margin: 0; 
+    text-align: center;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+  text-align: center;
+
 }
 
 .number-input{
-	width: 3em;
-	background: #FFA630;
+  width: 3em;
+  /* height: 2em; */
+  /* font-size: 2.4em; */
+	background: whitesmoke;
 	border-radius: 5px;
 	border-style: solid;
 	border-color: transparent;
@@ -35,6 +46,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
+#singleVar{
+  margin: 0 auto;
+  font-size: 2.2em;
+  width:max-content;
+  width: -moz-max-content;
+}
 
 .ripple {
   width: 0;
@@ -51,7 +68,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 @keyframes rippleDrop {
   100% {
-    transform: scale(2.9);
+    transform: scale(4);
     opacity: 1;
   }
 }
@@ -59,9 +76,18 @@ input[type=number]::-webkit-outer-spin-button {
 .text-scrambler {
 	font-family: 'Roboto Mono', monospace;
   font-weight: 100;
-  font-size: 28px;
-  color: #30323D;
+  font-size: 5.5em;
+  color: white;
 }
 .dud {
-  color: #4D5061;
+  color: whitesmoke;
+}
+
+
+#simultaneousEq{
+
+  font-size: 2em;
+  width: max-content;
+  text-align: center;
+  
 }

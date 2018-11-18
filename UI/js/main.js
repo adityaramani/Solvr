@@ -296,7 +296,7 @@ var
 TextScramble = function () {
   function TextScramble(el) {_classCallCheck(this, TextScramble);
     this.el = el;
-    this.chars = '!<>-_\\/[]{}—=+*^?#________';
+    this.chars = '!<>-_\\/[]{}—=+*^?#____123456789XYZ';
     this.update = this.update.bind(this);
   }_createClass(TextScramble, [{ key: 'setText', value: function setText(
     newText) {var _this = this;
@@ -352,13 +352,12 @@ TextScramble = function () {
 
 var app = angular.module('SolvrApp', []);
 app.controller('formCtrl', function($scope) {
-	$scope.rhs = null;
-	$scope.x_coeff= null;
+	$scope.data = null;
 
-    $scope.solve = function(e) {
+    $scope.ripple = function(e,element,initText ,result) {
 
         $(".ripple").remove();
-        var cnt = $(".input-equation")[0];
+        var cnt = $(element+"Container");
 		var posX = $(cnt).offset().left,
 		posY = $(cnt).offset().top,
 		buttonWidth = $(cnt).width(),
@@ -390,17 +389,25 @@ app.controller('formCtrl', function($scope) {
 	
 		var text = document.createElement("h3");
 		text.className = "text-scrambler";
-		text.innerHTML= $scope.x_coeff + "X = " + $scope.rhs; 
-		
+		text.innerHTML= initText ;
 		setTimeout(function() { 
-			$("#singleVarEq").remove();
-			$(".input-equation").append(text);
-		 	var el = document.querySelector('.text-scrambler');
+			$(element).remove();
+			$(element+"Container").append(text);
+		 	var el = document.querySelector(element+'Container .text-scrambler');
 			var fx = new TextScramble(el);
-			fx.setText("x = 4")
+			fx.setText(result)
+			// el.style.color = "white";
 		 }, 550);
-
-		
+				
 	};
 
+	$scope.solveSingle =  function(e){
+		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
+		$scope.ripple(e, "#singleVar", initText,"x  = 4");	
+	};
+
+	$scope.solveSimul =  function(e){
+		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
+		$scope.ripple(e, "#simultaneousEq", initText,"x  = 4");	
+	};
 });

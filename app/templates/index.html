@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Solvr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../static/index.css" />
+    <script   src="https://code.jquery.com/jquery-3.3.1.js"    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script> -->
+
+  </head>
+
+<script>
+
+  $(document).ready(function () {
+	var sections      = $('section');
+	var navbar        =	$('#nav');
+	var navbarHeight  = navbar.height();
+
+	var sectionOffset = [];
+
+	sections.each(function() {
+		var section = $(this);
+
+        var position = section.offset().top - navbarHeight;
+        var backgroundColor = section.css("background-color");
+
+        sectionOffset.push({'postion': position,'color': backgroundColor});
+       
+    });
+
+	$(window).on('scroll', function(){
+		var scrollPos = $(document).scrollTop();
+
+		$.each(sectionOffset, function(index, section){
+			if (scrollPos >= section.postion) {
+				navbar.css("background-color", section.color);
+			}
+		}) 
+	});
+
+});
+
+</script>
+<body>
+    <!-- Optional content you want to persist between sections -->
+
+
+    <body>
+
+      <nav id="nav">
+        <ul>
+          <li id="name">Solvr</li>
+          <li><a href="#section1" >Home</a></li>
+          <li><a href="#section2" >About</a></li>
+          <li><a href="#section3" >Contact</a></li>
+          <!-- <li><a href="#section4" >Section 4</a></li> -->
+        </ul>
+      </nav>
+
+    
+      <section  id="section1" class="one" >
+        <div class="sidebar-left"  style="background-color:#217224 " > </div>
+        <div class="sidebar-right" style="background-color: #217224 " > </div>
+
+        
+        <h1>Solvr</h1>
+
+        <div class="wrapper">
+          <p>An Interactive Mathematic Equation </p>        
+      </div>
+
+      <button class="getstarted" >Get STarted</button>
+      </section>
+    
+      <section  id="section2" class="two" >
+        <div class="sidebar-left" style="background-color:#314ad4 "> </div>
+        <div class="sidebar-right"  style="background-color: #314ad4 "> </div>
+
+        <h2>Another Section…</h2>
+        <div class="wrapper">
+        <p>
+          By the way each section is displayed full screen just by one line of css.
+          You can use viewport untis for flexible heights and widths.
+        </p>
+      </div>
+      </section>
+    
+      <section id="section3" class="three" >
+        <div class="sidebar-left"  style="background-color:#f76b0e "> </div>
+        <div class="sidebar-right" style="background-color:#f76b0e "> </div>
+
+        <div class="wrapper">
+        <h2>And Another Section…</h2>
+      </div>
+      </section>
+    
+    
+        </body>
+    </html>
+    
+

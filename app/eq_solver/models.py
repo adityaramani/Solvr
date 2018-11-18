@@ -33,10 +33,10 @@ class Simultaneous(Equation):
         this = self.variables
         other = other.variables
 
-        a = this['y']['coeff'] * other['RHS'] - other['y']['coeff'] * this['RHS']
-        b = -this['x']['coeff'] * other['RHS'] + other['x']['coeff'] * this['RHS']
+        a = this['y']['coeff'] * -other['RHS'] - other['y']['coeff'] * -this['RHS']
+        b = -this['x']['coeff'] * -other['RHS'] + other['x']['coeff'] * -this['RHS']
         c = this['x']['coeff'] * other['y']['coeff'] - other['x']['coeff'] * this['y']['coeff']
-
+        print(a,b,c)
         if c == 0:
             self.solution = None
         else:

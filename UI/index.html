@@ -415,36 +415,52 @@ http://miradontsoa.com
                 <div class="item-wrapper ">
 
                   <div class="illustr eq-solver">
-                  <div class="input-equation" >
-                    <form id="singleVarEq">
-                      <input type="number" name="x_coeff" class="number-input" ng-model="x_coeff">
+                  <div class="input-equation" id = "singleVarContainer" >
+                    <form id="singleVar">
+                      <input type="number" name="x_coeff" class="number-input" ng-model="data.x_coeff">
                        <span>&nbsp; X      =   &nbsp;&nbsp; </span>
-                      <input type="number" name="rhs" style="width: 3em" class="number-input" ng-model="rhs">
-                      <br/><br/> <br/>
+                      <input type="number" name="rhs"  class="number-input" ng-model="data.rhs">
+                      <br/><br/> 
+                        
                       <!-- <span style="display:inline-block; width: 60px;"></span> -->
 
-                      <button ng-click="solve($event)"> Solve!</button>
+                      <button ng-click="solveSingle($event)"> Solve!</button>
                     </form>
                   </div> 
-
-
-                  </div>
-
-                    
-                  
-                </div>
+                </div>                  
+              </div>
               
               </li>
               <!-- item -->
               <li class="slide-item swiper-slide">
                 <div class="item-wrapper">
                   <div class="illustr">
-                    <img src="img/items/img-sample3-small.jpg" alt="Image" class="img">
+                    <div class="input-equation" id="simultaneousEqContainer" >
+                      <form id="simultaneousEq">
+                        <input type="number" name="first_x_coeff" class="number-input" ng-model="data.first.x_coeff">
+                         <span>&nbsp; X      &nbsp;&nbsp; </span>
+                         <input type="number" name="first_y_coeff" class="number-input" ng-model="data.first.y_coeff">
+                         <span>&nbsp; Y    =   &nbsp;&nbsp; </span>
+                        
+                         <input type="number" name="first_rhs"  class="number-input" ng-model="data.first.rhs">
+                        <br/><br/> 
+                         
+                        <input type="number" name="second_x_coeff" class="number-input" ng-model="data.second.x_coeff">
+                         <span>&nbsp; X      &nbsp;&nbsp; </span>
+                         <input type="number" name="second_y_coeff" class="number-input" ng-model="data.second.y_coeff">
+                         <span>&nbsp; Y    =   &nbsp;&nbsp; </span>
+                        
+                         <input type="number" name="second_rhs"  class="number-input" ng-model="data.second.rhs">
+                        <br/><br/> 
+                          
+                        <!-- <span style="display:inline-block; width: 60px;"></span> -->
+                        <button ng-click="solveSimul($event)" style="float:right"> Solve!</button>
+  
+                      </form>
+
+                    </div> 
+  
                   </div>
-                  <a class="legend" href="item.html#project_url">
-                    <h3 class="display-3">Cloud</h3>
-                    <h4>Music / Beats</h4>
-                  </a>
                 </div>
               </li>
               <!-- item -->

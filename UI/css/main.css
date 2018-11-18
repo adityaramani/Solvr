@@ -1831,11 +1831,13 @@ textarea {
     .carousel-swiper-beta .slider-container .illustr {
       display: block;
       position: relative;
-      width: 100%;
+      width: 97%;
       border-radius: 30px;
-      background: #F2EFEA;
+      background: #191D32;
       overflow: hidden;
       -webkit-transition: 0.15s;
+      border-style: solid;
+      border-color: white;
       transition: 0.15s;
       opacity: 0;
       -webkit-transform: scale(0.8);
