@@ -1,0 +1,115 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+
+.eq-solver{
+	height: 16em;
+
+}
+
+.input-equation{
+	width: 20em;
+	position: relative;
+	height: 5em;
+	margin: 0 auto;
+	padding: 1em;
+	top:15%;
+	color: white;
+  text-align: center;
+  
+}
+
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+    text-align: center;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+  text-align: center;
+
+}
+
+.number-input{
+  width: 3em;
+  /* height: 2em; */
+  /* font-size: 2.4em; */
+	background: whitesmoke;
+	border-radius: 5px;
+	border-style: solid;
+	border-color: transparent;
+}
+
+
+
+#singleVar{
+  margin: 0 auto;
+  font-size: 2.2em;
+  width:max-content;
+  width: -moz-max-content;
+}
+
+
+
+#simultaneousSubmitBtn {
+    position: absolute;
+    left: 65%;
+    top: 20%;
+    font-size: 1.3em;
+    
+}
+
+@keyframes rippleDrop {
+  100% {
+    transform: scale(6);
+    opacity: 1;
+  }
+}
+
+
+.ripple {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: #B5D99C;
+  transform: scale(0);
+  position: absolute;
+  opacity: 1;
+}
+
+.rippleEffectsingleVar {
+    animation: rippleDrop .9s linear;
+}
+
+
+.rippleEffectsimultaneousEq {
+  animation: rippleDrop 2.2s linear;
+}
+
+#simultaneousEq{
+
+  font-size: 1.6em;
+  width: 30em;
+  text-align: left;
+  position: relative;
+  left: -50%;
+}
+
+.text-scrambler {
+	font-family: 'Roboto Mono', monospace;
+  font-weight: 100;
+  font-size: 5.5em;
+  color: white;
+  width: 10em;
+  height: 3em;
+  position: relative;
+  left: -100%;  
+}
+.dud {
+  color: whitesmoke;
+}
+
