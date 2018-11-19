@@ -220,7 +220,7 @@ http://miradontsoa.com
               <div class="section-content">
                 <!-- illustartion -->
                 <div class="illustr zoomout-1">
-                  <img class="logo" src="logo_white.png" alt="Logo">
+                  <img class="logo" src="logo_white.png" alt="Logo" style="size=">
                 </div>
               </div>
             </div>
@@ -454,26 +454,21 @@ http://miradontsoa.com
               </li>
               <!-- item -->
               <li class="slide-item swiper-slide">
-                <div class="item-wrapper">
-                  <div class="illustr">
-                    <img src="img/items/img-sample4-small.jpg" alt="Image" class="img">
-                  </div>
-                  <a class="legend" href="item.html#project_url">
-                    <h3 class="display-3">Garden</h3>
-                    <h4>Music / Beats</h4>
-                  </a>
-                </div>
-              </li>
-              <!-- item -->
-              <li class="slide-item swiper-slide">
-                <div class="item-wrapper">
-                  <div class="illustr">
-                    <img src="img/items/img-sample5-small.jpg" alt="Image" class="img">
-                  </div>
-                  <a class="legend" href="item.html#project_url">
-                    <h3 class="display-3">Sky</h3>
-                    <h4>Music / Beats</h4>
-                  </a>
+                <div class="illustr eq-solver">
+                  <div class="input-equation" id = "quadraticContainer" >
+                    <form id="quadratic">
+                        <input type="number" name="x_coeff" class="number-input" ng-model="data.quad.x2_coeff">
+                        <span>&nbsp; X <sup>2</sup> &nbsp; </span>
+                      <input type="number" name="x_coeff" class="number-input" ng-model="data.quad.x_coeff">
+                       <span>&nbsp; X      =   &nbsp;&nbsp; </span>
+                      <input type="number" name="rhs"  class="number-input" ng-model="data.quad.rhs">
+                      <br/><br/> 
+                        
+                      <!-- <span style="display:inline-block; width: 60px;"></span> -->
+
+                      <button ng-click="solveQuad($event)" > Solve!</button>
+                    </form>
+                  </div> 
                 </div>
               </li>
             </ul>
@@ -510,72 +505,21 @@ http://miradontsoa.com
 
         <!-- title -->
         <div class="section-title text-center ">
-          <h5 class="title-bg">Products</h5>
+          <!-- <h5 class="title-bg">Products</h5> -->
           <div class="title-abs">
             <h2 class="display-4 display-title">Products</h2>
             <p>Here is the list of our awesome pages.</p>
           </div>
         </div>
 
-        <!-- text or illustration order are manipulated via Bootstrap order-md-1, order-md-2 class -->
-        <!-- begin of item -->
-        <div class="item row justify-content-between">
-          <!-- img-frame-normal demo -->
-          <div class="col-12 col-sm-6 col-md-4 center-vh">
-            <div class="section-content anim translateUp">
-              <div class="images text-center">
-                <div class="img-frame-normal">
-                  <div class="img-1 shadow">
-                    <a href="index.html">
-                      <img class="img" src="demopage/default.jpg" alt="Image">
-                    </a>
-                  </div>
-                  <div class="legend text-left pos-abs">
-                    <h5>Default</h5>
-                    <p class="small">Image or solid color as background of the page</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="wrapper-upload">
+          <div class="file-upload">
+            <input type="file" />
+            <i class="fa fa-arrow-up"></i>
           </div>
-          <!-- img-frame-normal demo -->
-          <div class="col-12 col-sm-6 col-md-4 center-vh">
-            <div class="section-content anim">
-              <div class="images text-center">
-                <div class="img-frame-normal">
-                  <div class="img-1 shadow">
-                    <a href="index-slideshow.html">
-                      <img class="img" src="demopage/slideshow.jpg" alt="Image">
-                    </a>
-                  </div>
-                  <div class="legend text-left pos-abs">
-                    <h5>Slideshow</h5>
-                    <p class="small">Fullscreen background image slideshow</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- img-frame-normal demo -->
-          <div class="col-12 col-sm-6 col-md-4 center-vh">
-            <div class="section-content anim translateDown">
-              <div class="images text-center">
-                <div class="img-frame-normal">
-                  <div class="img-1 shadow">
-                    <a href="index-video.html">
-                      <img class="img" src="demopage/video.jpg" alt="Image">
-                    </a>
-                  </div>
-                  <div class="legend text-left pos-abs">
-                    <h5>Video</h5>
-                    <p class="small">Fullscreen video background</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+        
+
         <!-- end of item -->
       </div>
       <!-- End of section wrapper -->

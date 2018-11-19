@@ -420,9 +420,31 @@ app.controller('formCtrl', function($scope,$http) {
 	};
 
 	$scope.solveSimul =  function(e){
-		var initText = $scope.data.equation_a.x_coeff + "X "  + $scope.data.equation_a.y_coeff+" Y =" +$scope.data.equation_a.rhs+ $scope.data.equation_b.x_coeff + "X "  + $scope.data.equation_b.y_coeff+" Y =" +$scope.data.equation_b.rhs ;
+		var initText = $scope.data.equation_a.x_coeff + "X "  + $scope.data.equation_a.y_coeff+"Y =" +$scope.data.equation_a.rhs+"<br/>"+  $scope.data.equation_b.x_coeff + "X "  + $scope.data.equation_b.y_coeff+" Y =" +$scope.data.equation_b.rhs ;
+		var payload = {"equation" : $scope.data}
 		
 		$("#simultaneousSubmitBtn").css("z-index", -2);
-		$scope.ripple(e, "#simultaneousEq", initText,"x  = 4", 800);	
+		$http.post("http://localhost:8080/solve/simultaneous",payload ).then(function(response){
+		
+		var answer = response.data;
+		var s = "";
+		console.log(answer)
+		for (var key in answer){
+			s+=key+" = "+ answer[key] + ";";
+		}
+
+		$scope.ripple(e, "#simultaneousEq", initText,s, 800);	
+
+	}, function(){
+			console.log("Error Simul");
+		});
+
 	};
+
+	$scope.solveQuad = function(e) {
+		var initText = $scope.data.equation_a.x_coeff + "X "  + $scope.data.equation_a.y_coeff+"Y =" +$scope.data.equation_a.rhs+"<br/>"+  $scope.data.equation_b.x_coeff + "X "  + $scope.data.equation_b.y_coeff+" Y =" +$scope.data.equation_b.rhs ;
+		$scope.ripple(e, "#quadratic", initText,s, 800);	
+
+	}
+
 });

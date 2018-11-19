@@ -18,8 +18,8 @@ def solve_simple_equation():
 def solve_simul_equation():
     print("Got request")
     print(request.json)
-    args_a = request.json['equation_a']
-    args_b = request.json['equation_b']
+    args_a = request.json['equation']['equation_a']
+    args_b = request.json['equation']['equation_b']
 
     eq_a = Simultaneous(**args_a)
     eq_b = Simultaneous(**args_b)
