@@ -348,7 +348,28 @@ TextScramble = function () {
 
 
 
+	$("#file-upload-form").submit(function(e) {
+		e.preventDefault();
+		console.log(this)
+		var formData = new FormData(this);    
+		console.log(formData)
 
+
+		$.ajax({
+			type : 'POST',
+			url : '/image/upload',
+			data: formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,   // tell jQuery not to set contentType
+			success: function(response){
+				console.log("success")
+			}
+		})
+	});	
+
+	$('#file-input').change(function() {
+		$('#file-upload-form').submit();
+	  });
 
 var app = angular.module('SolvrApp', []);
 app.controller('formCtrl', function($scope,$http) {
