@@ -51,16 +51,17 @@ class Quadratic(Equation):
 
     def solve(self):
         this = self.variables
-
-        D = this['x']['coeff']**2  - 4*this['x2']['coeff'] * this['c']
-
+        D = this['x_coeff']**2  - 4*this['x2_coeff'] * -this['rhs']
+        print(D)
         if D < 0 :
-            this.solution = None
+            self.solution = {}
         else:
-            D = D**0.5
-            x1 = (-this['x'] + D) / 2*this['x2']
-            x2 = (-this['x'] - D) / 2*this['x2']
+            D = int(D**0.5)
+            print(D)
+            print(this['x_coeff'], "Coeff ")
+            x1 = (-this['x_coeff'] + D) / (2*this['x2_coeff'])
+            x2 = (-this['x_coeff'] - D) / (2*this['x2_coeff'])
 
-            this.solution = {}
-            this.solution['x1'] = x1
-            this.solution['x2'] = x2
+            self.solution = {}
+            self.solution['x1'] = x1
+            self.solution['x2'] = x2

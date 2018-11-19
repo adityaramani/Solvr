@@ -27,3 +27,16 @@ def solve_simul_equation():
 
     solution =  eq_a.solution
     return jsonify(solution)
+
+
+@eq_solver.route('/quadratic',methods=['POST'])
+def solve_quad_equation():
+    print("Got request")
+    print(request.json)
+    args = request.json['equation']
+
+    eq_a = Quadratic(**args)
+    eq_a.solve()
+
+    solution =  eq_a.solution
+    return jsonify(solution)

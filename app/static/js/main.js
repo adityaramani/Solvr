@@ -380,12 +380,15 @@ app.controller('formCtrl', function($scope,$http) {
   
  
   // Add the ripples CSS and start the animation
+		  $("sup").css("color", "#B5D99C");
+
 		  $(".ripple").css({
 		    width: buttonWidth,
 		    height: buttonHeight,
 		    top: y + 'px',
 		    left: x + 'px'
 		}).addClass("rippleEffect"+element.slice(1));
+
 	
 		var text = document.createElement("h3");
 		text.className = "text-scrambler";
@@ -442,9 +445,22 @@ app.controller('formCtrl', function($scope,$http) {
 	};
 
 	$scope.solveQuad = function(e) {
-		var initText = $scope.data.equation_a.x_coeff + "X "  + $scope.data.equation_a.y_coeff+"Y =" +$scope.data.equation_a.rhs+"<br/>"+  $scope.data.equation_b.x_coeff + "X "  + $scope.data.equation_b.y_coeff+" Y =" +$scope.data.equation_b.rhs ;
+		
+		var initText = $scope.data.quad.x2_coeff + "X <sup>2</sup> "  + $scope.data.quad.x_coeff+"X =" +$scope.data.quad.rhs;
+		var payload = {"equation" : $scope.data.quad}
+		$http.post("http://localhost:8080/solve/quadratic",payload ).then(function(response){
+		var s = ""
+		var answer = response.data;
+		for (var key in answer){
+			s+=key+" = "+ answer[key] + "<br/>";
+		}
+		
 		$scope.ripple(e, "#quadratic", initText,s, 800);	
+		// $("sup").remove()
 
+	}, function(){
+			console.log("error quad");
+		});
 	}
 
 });
