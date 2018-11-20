@@ -1,9 +1,15 @@
 from flask import Blueprint, request,flash, jsonify, render_template,redirect, url_for
-from werkzeug import SharedDataMiddleware, secure_filename
+from werkzeug.utils import  secure_filename
 import os
 
 view = Blueprint('view_render', __name__)
 
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           
 @view.route("/", methods= ['GET'])
 def index():
     return render_template('index.html')
@@ -29,5 +35,4 @@ def file_upload():
             file.save(os.path.join("app/static/image_upload", filename))
             return "Success"
 
-    print("Success")
     return "Success"

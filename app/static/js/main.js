@@ -353,7 +353,7 @@ TextScramble = function () {
 		console.log(this)
 		var formData = new FormData(this);    
 		console.log(formData)
-
+		
 
 		$.ajax({
 			type : 'POST',
@@ -367,15 +367,37 @@ TextScramble = function () {
 		})
 	});	
 
-	$('#file-input').change(function() {
-		$('#file-upload-form').submit();
-	  });
 
 var app = angular.module('SolvrApp', []);
+
+app.directive("ngUploadChange",function(){
+    return{
+        scope:{
+            ngUploadChange:"&"
+        },
+        link:function($scope, $element, $attrs){
+            $element.on("change",function(event){
+                $scope.$apply(function(){
+                    $scope.ngUploadChange({$event: event})
+                })
+            })
+            $scope.$on("$destroy",function(){
+                $element.off();
+            });
+        }
+    }
+});
+
 app.controller('formCtrl', function($scope,$http) {
 	$scope.data = null;
 
-    $scope.ripple = function(e,element,initText ,result,time) {
+	$scope.uploadFile = function(event){
+		console.log("files")
+        var files = event.target.files;
+		console.log(files)
+	};
+	
+    $scope.ripple = function(e,element) {
 
         $(".ripple").remove();
 		var cnt = $(element);
@@ -411,6 +433,11 @@ app.controller('formCtrl', function($scope,$http) {
 		}).addClass("rippleEffect"+element.slice(1));
 
 	
+				
+	};
+
+	$scope.textShuffle = function(element,initText,result,time){
+
 		var text = document.createElement("h3");
 		text.className = "text-scrambler";
 		text.innerHTML= initText ;
@@ -422,8 +449,8 @@ app.controller('formCtrl', function($scope,$http) {
 			fx.setText(result)
 			// el.style.color = "white";
 		 }, time);
-				
-	};
+	
+	}
 
 	$scope.solveSingle =  function(e){
 		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
@@ -437,7 +464,9 @@ app.controller('formCtrl', function($scope,$http) {
 			s+=key+" = "+ answer[key] + "  ";
 		}
 
-		$scope.ripple(e, "#singleVar", initText,s, 550);
+		$scope.ripple(e,"#singleVar");
+		$scope.textShuffle("#singleVar", initText,s, 550);
+
 		}, function(){
 			console.log("errodsadsadsasdr");
 		});
@@ -452,12 +481,12 @@ app.controller('formCtrl', function($scope,$http) {
 		
 		var answer = response.data;
 		var s = "";
-		console.log(answer)
-		for (var key in answer){
+			for (var key in answer){
 			s+=key+" = "+ answer[key] + ";";
 		}
 
-		$scope.ripple(e, "#simultaneousEq", initText,s, 800);	
+		$scope.ripple(e,"#simultaneousEq");
+		$scope.textShuffle("#simultaneousEq", initText,s, 800);	
 
 	}, function(){
 			console.log("Error Simul");
@@ -476,7 +505,9 @@ app.controller('formCtrl', function($scope,$http) {
 			s+=key+" = "+ answer[key] + "<br/>";
 		}
 		
-		$scope.ripple(e, "#quadratic", initText,s, 800);	
+		$scope.ripple(e,"#quadratic");
+		$scope.textShuffle( "#quadratic", initText,s, 800);	
+
 		// $("sup").remove()
 
 	}, function(){
@@ -484,4 +515,6 @@ app.controller('formCtrl', function($scope,$http) {
 		});
 	}
 
+
+	
 });

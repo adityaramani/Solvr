@@ -183,7 +183,7 @@ http://miradontsoa.com
 
     <!-- Transluscent mask as filter -->
 <!--    <div class="cover-bg-mask bg-color" data-bgcolor="rgba(2, 3, 10, 0.7)"></div> -->
-    <div id="particles-js" class="cover-bg pos-abs full-size bg-color" data-bgcolor="rgba(2, 3, 10, 0.7)"></div>
+    <div id="particles-js0" class="cover-bg pos-abs full-size bg-color" data-bgcolor="rgba(2, 3, 10, 0.7)"></div>
 
   </div>
   <!--END OF page cover -->
@@ -514,16 +514,20 @@ http://miradontsoa.com
           </div>
         </div>
 
-        <div class="wrapper-upload">
-            <div class="file-upload">
+        <div class="wrapper-upload" id="file-upload-container" >
+          <div class="file-upload">
 
-          <form enctype=multipart/form-data id="file-upload-form" method="post" action="">
-            <input type="file" id ="file-input" name="image"/>
-            <i class="fa fa-arrow-up"></i>
-        </form>
-      </div>
+            <form enctype=multipart/form-data id="file-upload-form" method="post" action="">
+              <input type="file" id ="file-input" name="image"  ng-upload-change="fileUpload($event)"/>
+              <i class="fa fa-arrow-up"></i>
+            </form>
+          </div>
+        </div>
+              
 
-      </div>
+        </div>
+
+              
         
 
         <!-- end of item -->
