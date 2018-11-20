@@ -355,43 +355,15 @@ TextScramble = function () {
 		console.log(formData)
 		
 
-		$.ajax({
-			type : 'POST',
-			url : '/image/upload',
-			data: formData,
-			processData: false,  // tell jQuery not to process the data
-			contentType: false,   // tell jQuery not to set contentType
-			success: function(response){
-				console.log("success")
-			}
-		})
 	});	
 
 
-var app = angular.module('SolvrApp', []);
+var app = angular.module('SolvrApp', ['ngFileUpload']);
 
-app.directive("ngUploadChange",function(){
-    return{
-        scope:{
-            ngUploadChange:"&"
-        },
-        link:function($scope, $element, $attrs){
-            $element.on("change",function(event){
-                $scope.$apply(function(){
-                    $scope.ngUploadChange({$event: event})
-                })
-            })
-            $scope.$on("$destroy",function(){
-                $element.off();
-            });
-        }
-    }
-});
-
-app.controller('formCtrl', function($scope,$http) {
+app.controller('formCtrl', ['$scope','$http','Upload',function($scope,$http, Upload) {
 	$scope.data = null;
 
-	$scope.uploadFile = function(event){
+	$scope.fileUpload = function(event){
 		console.log("files")
         var files = event.target.files;
 		console.log(files)
@@ -517,4 +489,75 @@ app.controller('formCtrl', function($scope,$http) {
 
 
 	
-});
+}]);
+
+
+app.controller('fileCtrl', ['$scope', 'Upload', function ($scope, Upload) {
+    $scope.ripple = function(e,element) {
+
+        $(".ripple").remove();
+		var cnt = $(element);
+		var posX = $(cnt).offset().left,
+		posY = $(cnt).offset().top,
+		buttonWidth = $(cnt).width(),
+		buttonHeight =  $(cnt).height();
+
+  	// Add the element
+  		$(cnt).prepend("<span class='ripple'></span>");
+
+  
+ // Make it round!
+		if(buttonWidth >= buttonHeight) {
+    		buttonHeight = buttonWidth;
+  		} else {
+    		buttonWidth = buttonHeight; 
+ 		 }
+  
+  // Get the center of the element
+  		var x = e.pageX - posX - buttonWidth / 2;
+  		var y = e.pageY - posY - buttonHeight / 2;
+  
+ 
+  // Add the ripples CSS and start the animation
+		  $("sup").css("color", "#B5D99C");
+
+		  $(".ripple").css({
+		    width: buttonWidth,
+		    height: buttonHeight,
+		    top: y + 'px',
+		    left: x + 'px'
+		}).addClass("rippleEffect"+element.slice(1));
+	}
+
+	
+// upload on file select or drop
+    $scope.upload = function (file,event) {
+		console.log("upload");
+		
+		
+		Upload.upload({
+            url: '/image/upload',
+            data: {"image": file}
+        }).then(function (resp) {
+
+
+			$(".file-upload").css("z-index", "-2")
+			$scope.ripple(event,"#file-upload-container" );
+			// $("#file-upload-container").html( "")
+
+			setTimeout(function(){
+				$("#file-upload-container").addClass("upload-result");
+
+			},2000);
+			
+
+            console.log('Success ' + file.name + ' uploaded. Response: ' + resp.data);
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + file.name);
+        });
+    };
+
+}]);

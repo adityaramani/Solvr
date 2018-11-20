@@ -104,7 +104,7 @@ input[type=number] {
 
 
 .rippleEffectfile-upload-container {
-  animation: rippleDrop 2.2s linear;
+  animation: rippleDrop 2.4s linear;
 }
 
 #simultaneousEq{
@@ -133,11 +133,13 @@ input[type=number] {
 
 
 .wrapper-upload {
-  width: 95%;
-  height: 16em;
+  width: fit-content;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  left: 40%;  
 }
 .wrapper-upload .file-upload {
   height: 2.5em;
@@ -174,4 +176,8 @@ background: #191D32;
 border-color: white;
 border-style:solid;
 border-radius: 30px;
+width: 95%;
+height: 16em;
+position: unset;
+
 }

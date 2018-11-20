@@ -28,7 +28,7 @@ def file_upload():
 
         if file.filename == '':
             flash('No selected file')
-            return redirect(request.url)
+            return "ERROR"
 
         if file:
             filename = secure_filename(file.filename)

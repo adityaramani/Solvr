@@ -68,6 +68,7 @@ http://miradontsoa.com
   <script src="/js/modernizr-2.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="/js/ng-file-upload.js"></script>
 </head>
 
 
@@ -501,7 +502,7 @@ http://miradontsoa.com
     <!-- End of slider section -->
 
     <!-- Begin of list two side 1 section -->
-    <div class="section section-twoside fp-auto-height-responsive " data-section="products">
+    <div class="section section-twoside fp-auto-height-responsive " data-section="products" >
       <!-- Begin of section wrapper -->
       <div class="section-wrapper twoside">
 
@@ -514,18 +515,16 @@ http://miradontsoa.com
           </div>
         </div>
 
-        <div class="wrapper-upload" id="file-upload-container" >
+        <div class="wrapper-upload" id="file-upload-container" ng-controller="fileCtrl" >
           <div class="file-upload">
-
-            <form enctype=multipart/form-data id="file-upload-form" method="post" action="">
-              <input type="file" id ="file-input" name="image"  ng-upload-change="fileUpload($event)"/>
-              <i class="fa fa-arrow-up"></i>
-            </form>
+            <div class="button" ngf-select="upload($file,$event)"  name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+            <i class="fa fa-arrow-up"></i>
           </div>
         </div>
+      </div>
               
 
-        </div>
+      </div>
 
               
         
