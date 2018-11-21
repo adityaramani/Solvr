@@ -1,7 +1,7 @@
 import identifier
 import json
 
-ret = identifier.identify('/home/aditya/Pictures/Screenshot from 2018-11-21 14-37-05.png')
+ret = identifier.identify('TestImages/eq5.png')
 print(ret)
 # ret = json.loads(ret)
 
