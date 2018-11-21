@@ -1,6 +1,7 @@
 from flask import Blueprint, request,flash, jsonify, render_template,redirect, url_for
 from werkzeug.utils import  secure_filename
 import os
+import app.eq_identifier.identifier as eq_identifier  
 
 view = Blueprint('view_render', __name__)
 
@@ -32,7 +33,9 @@ def file_upload():
 
         if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join("app/static/image_upload", filename))
+            path  = os.path.join("app/static/image_upload", filename)
+            file.save(path)
+            eq = eq_identifier.identify(path)
             return "Success"
 
     return "Success"
