@@ -528,15 +528,16 @@ app.controller('fileCtrl', ['$scope', 'Upload', function ($scope, Upload) {
             data: {"image": file}
         }).then(function (resp) {
 			
+			$scope.ripple(event,"#file-upload-container" )
 			$(".file-upload").css("z-index", "-2")
 			var sol  = "X = " + resp.data.solution['x']
 			setTimeout(function(){
 				$("#file-upload-container").addClass("upload-result");
 				$("#form-upload").remove()
-				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",sol,1 )
+				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",sol,1450 )
+		
 
-
-			},1000);
+			},1500);
 			
 
             console.log('Success ' + file.name + ' uploaded. Response: ' + resp.data);
