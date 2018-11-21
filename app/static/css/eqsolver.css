@@ -181,3 +181,9 @@ height: 16em;
 position: unset;
 
 }
+
+
+#result-scrambler {
+  position: inherit;
+  font-size: 3.2em;
+}

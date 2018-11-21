@@ -299,7 +299,8 @@ TextScramble = function () {
     this.chars = '!<>-_\\/[]{}—=+*^?#____123456789XYZ';
     this.update = this.update.bind(this);
   }_createClass(TextScramble, [{ key: 'setText', value: function setText(
-    newText) {var _this = this;
+	newText) {var _this = this;
+	  console.log(this)
       var oldText = this.el.innerText;
       var length = Math.max(oldText.length, newText.length);
       var promise = new Promise(function (resolve) {return _this.resolve = resolve;});
@@ -358,6 +359,65 @@ TextScramble = function () {
 	});	
 
 
+
+var ripple = function(e,element) {
+
+	$(".ripple").remove();
+	var cnt = $(element);
+	var posX = $(cnt).offset().left,
+	posY = $(cnt).offset().top,
+	buttonWidth = $(cnt).width(),
+	buttonHeight =  $(cnt).height();
+
+  // Add the element
+	  $(cnt).prepend("<span class='ripple'></span>");
+
+
+// Make it round!
+	if(buttonWidth >= buttonHeight) {
+		buttonHeight = buttonWidth;
+	  } else {
+		buttonWidth = buttonHeight; 
+	  }
+
+// Get the center of the element
+	  var x = e.pageX - posX - buttonWidth / 2;
+	  var y = e.pageY - posY - buttonHeight / 2;
+
+
+// Add the ripples CSS and start the animation
+	  $("sup").css("color", "#B5D99C");
+
+	  $(".ripple").css({
+		width: buttonWidth,
+		height: buttonHeight,
+		top: y + 'px',
+		left: x + 'px'
+	}).addClass("rippleEffect"+element.slice(1));
+
+
+			
+};
+
+
+var textShuffle = function(element,initText,result,time){
+
+	var text = document.createElement("h3");
+	text.className = "text-scrambler";
+	text.innerHTML= initText ;
+	setTimeout(function() { 
+		$(element).remove();
+		$(element+"Container").append(text);
+		 var el = document.querySelector(element+'Container .text-scrambler');
+		var fx = new TextScramble(el);
+		fx.setText(result)
+		// el.style.color = "white";
+	 }, time);
+
+}
+
+
+
 var app = angular.module('SolvrApp', ['ngFileUpload']);
 
 app.controller('formCtrl', ['$scope','$http','Upload',function($scope,$http, Upload) {
@@ -369,61 +429,8 @@ app.controller('formCtrl', ['$scope','$http','Upload',function($scope,$http, Upl
 		console.log(files)
 	};
 	
-    $scope.ripple = function(e,element) {
-
-        $(".ripple").remove();
-		var cnt = $(element);
-		var posX = $(cnt).offset().left,
-		posY = $(cnt).offset().top,
-		buttonWidth = $(cnt).width(),
-		buttonHeight =  $(cnt).height();
-
-  	// Add the element
-  		$(cnt).prepend("<span class='ripple'></span>");
-
-  
- // Make it round!
-		if(buttonWidth >= buttonHeight) {
-    		buttonHeight = buttonWidth;
-  		} else {
-    		buttonWidth = buttonHeight; 
- 		 }
-  
-  // Get the center of the element
-  		var x = e.pageX - posX - buttonWidth / 2;
-  		var y = e.pageY - posY - buttonHeight / 2;
-  
- 
-  // Add the ripples CSS and start the animation
-		  $("sup").css("color", "#B5D99C");
-
-		  $(".ripple").css({
-		    width: buttonWidth,
-		    height: buttonHeight,
-		    top: y + 'px',
-		    left: x + 'px'
-		}).addClass("rippleEffect"+element.slice(1));
-
-	
-				
-	};
-
-	$scope.textShuffle = function(element,initText,result,time){
-
-		var text = document.createElement("h3");
-		text.className = "text-scrambler";
-		text.innerHTML= initText ;
-		setTimeout(function() { 
-			$(element).remove();
-			$(element+"Container").append(text);
-		 	var el = document.querySelector(element+'Container .text-scrambler');
-			var fx = new TextScramble(el);
-			fx.setText(result)
-			// el.style.color = "white";
-		 }, time);
-	
-	}
-
+    $scope.ripple = ripple;
+	$scope.textShuffle = textShuffle;
 	$scope.solveSingle =  function(e){
 		var initText = $scope.data.x_coeff + "X = "  +$scope.data.rhs;
 		$scope.data.x_expo = 1;
@@ -493,62 +500,43 @@ app.controller('formCtrl', ['$scope','$http','Upload',function($scope,$http, Upl
 
 
 app.controller('fileCtrl', ['$scope', 'Upload', function ($scope, Upload) {
-    $scope.ripple = function(e,element) {
+    
+    $scope.ripple = ripple;
+	$scope.textShuffle = function(element,initText,result,time){
 
-        $(".ripple").remove();
-		var cnt = $(element);
-		var posX = $(cnt).offset().left,
-		posY = $(cnt).offset().top,
-		buttonWidth = $(cnt).width(),
-		buttonHeight =  $(cnt).height();
+		var text = document.createElement("h3");
+		text.className = "text-scrambler";
+		text.innerHTML= initText ;
+		text.id = "result-scrambler";
+		setTimeout(function() { 
+			// $(element).remove();
+			$(element).append(text);
+			var el = document.querySelector(element +' .text-scrambler');
 
-  	// Add the element
-  		$(cnt).prepend("<span class='ripple'></span>");
-
-  
- // Make it round!
-		if(buttonWidth >= buttonHeight) {
-    		buttonHeight = buttonWidth;
-  		} else {
-    		buttonWidth = buttonHeight; 
- 		 }
-  
-  // Get the center of the element
-  		var x = e.pageX - posX - buttonWidth / 2;
-  		var y = e.pageY - posY - buttonHeight / 2;
-  
- 
-  // Add the ripples CSS and start the animation
-		  $("sup").css("color", "#B5D99C");
-
-		  $(".ripple").css({
-		    width: buttonWidth,
-		    height: buttonHeight,
-		    top: y + 'px',
-		    left: x + 'px'
-		}).addClass("rippleEffect"+element.slice(1));
-	}
-
+			var fx = new TextScramble(el);
+			fx.setText(result)
+			// el.style.color = "white";
+		 }, time);
 	
+	}
 // upload on file select or drop
     $scope.upload = function (file,event) {
 		console.log("upload");
-		
 		
 		Upload.upload({
             url: '/image/upload',
             data: {"image": file}
         }).then(function (resp) {
-
-
+			
 			$(".file-upload").css("z-index", "-2")
-			$scope.ripple(event,"#file-upload-container" );
-			// $("#file-upload-container").html( "")
-
+			var sol  = "X = " + resp.data.solution['x']
 			setTimeout(function(){
 				$("#file-upload-container").addClass("upload-result");
+				$("#form-upload").remove()
+				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",sol,1 )
 
-			},2000);
+
+			},1000);
 			
 
             console.log('Success ' + file.name + ' uploaded. Response: ' + resp.data);

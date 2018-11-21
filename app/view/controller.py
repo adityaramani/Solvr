@@ -1,7 +1,9 @@
 from flask import Blueprint, request,flash, jsonify, render_template,redirect, url_for
 from werkzeug.utils import  secure_filename
 import os
-import app.eq_identifier.identifier as eq_identifier  
+import app.eq_identifier.identifier as eq_identifier 
+from app.eq_solver import models
+import json
 
 view = Blueprint('view_render', __name__)
 
@@ -32,10 +34,17 @@ def file_upload():
             return "ERROR"
 
         if file:
+            print("Solving")
             filename = secure_filename(file.filename)
             path  = os.path.join("app/static/image_upload", filename)
             file.save(path)
-            eq = eq_identifier.identify(path)
-            return "Success"
+            eq = eq_identifier.identify([path])
+            print(eq)
+            if eq['type'] == "simple":
+                simple = models.Simple(**eq["equation"])
+                simple.solve()
+                return json.dumps( {"solution" :simple.solution , "text" : eq['text']})
+                
+            return "Error"
 
-    return "Success"
+    # return "Success"
