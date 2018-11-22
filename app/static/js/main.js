@@ -530,11 +530,11 @@ app.controller('fileCtrl', ['$scope', 'Upload', function ($scope, Upload) {
 			
 			$scope.ripple(event,"#file-upload-container" )
 			$(".file-upload").css("z-index", "-2")
-			var sol  = "X = " + resp.data.solution['x']
+			// var sol  = resp.data.solution['text']
 			setTimeout(function(){
 				$("#file-upload-container").addClass("upload-result");
 				$("#form-upload").remove()
-				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",sol,1450 )
+				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",resp.data.result,1450 )
 		
 
 			},1500);
