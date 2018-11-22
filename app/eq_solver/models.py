@@ -1,4 +1,4 @@
-
+import math
 class Equation():
 
 
@@ -19,9 +19,9 @@ class Simple(Equation):
 
     def solve(self):
         ans = {}
-        ans['x'] = self.variables['rhs'] / self.variables['x_coeff']
+        ans['x'] = round(self.variables['rhs'] / self.variables['x_coeff'],3)
         if self.variables['x_expo'] == 0 and ans['x'] != 1:
-            self.solution = None
+            self.solution =  {"x" : "No Solution"}
         else:
             self.solution = ans
 
@@ -38,11 +38,11 @@ class Simultaneous(Equation):
         c = this['x_coeff'] * other['y_coeff'] - other['x_coeff'] * this['y_coeff']
         print(a,b,c)
         if c == 0:
-            self.solution = None
+            self.solution = {'x': "No Solution" , "y" : "No Solution"}
         else:
             self.solution = {}
-            self.solution['x'] = a/c
-            self.solution['y'] = b/c
+            self.solution['x'] = round(a/c,3)
+            self.solution['y'] = round(b/c,3)
 
 
 class Quadratic(Equation):
@@ -54,7 +54,8 @@ class Quadratic(Equation):
         D = this['x_coeff']**2  - 4*this['x2_coeff'] * -this['rhs']
         print(D)
         if D < 0 :
-            self.solution = {}
+            self.solution = {'x1': "No Solution" , "x2" : "No Solution"}
+
         else:
             D = int(D**0.5)
             print(D)
@@ -63,5 +64,5 @@ class Quadratic(Equation):
             x2 = (-this['x_coeff'] - D) / (2*this['x2_coeff'])
 
             self.solution = {}
-            self.solution['x1'] = x1
-            self.solution['x2'] = x2
+            self.solution['x1'] = round(x1,3)
+            self.solution['x2'] = round(x2,3)
