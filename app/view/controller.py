@@ -1,7 +1,7 @@
 from flask import Blueprint, request,flash, jsonify, render_template,redirect, url_for
 from werkzeug.utils import  secure_filename
 import os
-# import app.eq_identifier.identifier as eq_identifier 
+import app.eq_identifier.identifier as eq_identifier 
 from app.eq_solver import models
 import json
 
