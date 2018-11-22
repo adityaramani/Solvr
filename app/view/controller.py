@@ -1,7 +1,7 @@
 from flask import Blueprint, request,flash, jsonify, render_template,redirect, url_for
 from werkzeug.utils import  secure_filename
 import os
-import app.eq_identifier.identifier as eq_identifier 
+# import app.eq_identifier.identifier as eq_identifier 
 from app.eq_solver import models
 import json
 
@@ -38,7 +38,7 @@ def file_upload():
             filename = secure_filename(file.filename)
             path  = os.path.join("app/static/image_upload", filename)
             file.save(path)
-            eq = eq_identifier.identify([path])
+            #eq = eq_identifier.identify([path])
             print(eq)
             if eq['type'] == "simple":
                 simple = models.Simple(**eq["equation"])
