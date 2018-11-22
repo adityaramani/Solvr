@@ -19,11 +19,14 @@ class Simple(Equation):
 
     def solve(self):
         ans = {}
-        ans['x'] = round(self.variables['rhs'] / self.variables['x_coeff'],3)
-        if self.variables['x_expo'] == 0 and ans['x'] != 1:
-            self.solution =  {"x" : "No Solution"}
+        if self.variables["x_coeff"] == 0:
+            self.solution =  {"x" : ":("}
         else:
-            self.solution = ans
+            ans['x'] = round(self.variables['rhs'] / self.variables['x_coeff'],3)
+            if self.variables['x_expo'] == 0 and ans['x'] != 1:
+                self.solution =  {"x" : ":("}
+            else:
+                self.solution = ans
 
 class Simultaneous(Equation):
     def __init__(self,**kwargs):
@@ -38,7 +41,7 @@ class Simultaneous(Equation):
         c = this['x_coeff'] * other['y_coeff'] - other['x_coeff'] * this['y_coeff']
         print(a,b,c)
         if c == 0:
-            self.solution = {'x': "No Solution" , "y" : "No Solution"}
+            self.solution = {'x': ":(" , "y" : ":("}
         else:
             self.solution = {}
             self.solution['x'] = round(a/c,3)
@@ -54,7 +57,7 @@ class Quadratic(Equation):
         D = this['x_coeff']**2  - 4*this['x2_coeff'] * -this['rhs']
         print(D)
         if D < 0 :
-            self.solution = {'x1': "No Solution" , "x2" : "No Solution"}
+            self.solution = {'x1': ":( " , "x2" : ":("}
 
         else:
             D = int(D**0.5)
