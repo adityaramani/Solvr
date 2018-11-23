@@ -38,7 +38,7 @@ def file_upload():
             filename = secure_filename(file.filename)
             path  = os.path.join("app/static/image_upload", filename)
             file.save(path)
-            #eq = eq_identifier.identify([path])
+            eq = eq_identifier.identify([path])
             print(eq)
             if eq['type'] == "simple":
                 simple = models.Simple(**eq["equation"])

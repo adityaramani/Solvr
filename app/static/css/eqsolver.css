@@ -203,3 +203,11 @@ position: unset;
   font-size: 3.2em;
   text-align: center
 }
+
+
+.more-page{    text-align: center;
+position: relative;
+top: 40%;
+font-family: inherit;
+font-size: 3em;
+}
