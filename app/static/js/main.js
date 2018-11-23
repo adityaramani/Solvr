@@ -27,7 +27,6 @@ $(document).on('ready', function () {
 		}
 	}
 
-	// 1. Background image as data attribut 
 	var list = $('.bg-img');
 	for (var i = 0; i < list.length; i++) {
 		var src = list[i].getAttribute('data-image-src');
@@ -36,25 +35,24 @@ $(document).on('ready', function () {
 		list[i].style.backgroundPosition = "center";
 		list[i].style.backgroundSize = "cover";
 	}
-	// Background color as data attribut
 	var list = $('.bg-color');
 	for (var i = 0; i < list.length; i++) {
 		var src = list[i].getAttribute('data-bgcolor');
 		list[i].style.backgroundColor = src;
 	}
 
-	// 2. Init Coutdown clock
-	try {
-		// check if clock is initialised
-		$('.clock-countdown').downCount({
-			date: $('.site-config').attr('data-date'),
-			offset: +10
-		});
-	}
-	catch (error) {
-		// Clock error : clock is unavailable
-		console.log("clock disabled/unavailable");
-	}
+	// // 2. Init Coutdown clock
+	// try {
+	// 	// check if clock is initialised
+	// 	$('.clock-countdown').downCount({
+	// 		date: $('.site-config').attr('data-date'),
+	// 		offset: +10
+	// 	});
+	// }
+	// catch (error) {
+	// 	// Clock error : clock is unavailable
+	// 	console.log("clock disabled/unavailable");
+	// }
 
 	// 3. Show/hide menu when icon is clicked
 	var menuItems = $('.all-menu-wrapper .nav-link');
@@ -118,6 +116,7 @@ $(document).on('ready', function () {
 		var src = imageList[i].getAttribute('data-src');
 		imageSlides.push({ src: src });
 	}
+
 	$('.slide-show').vegas({
 		delay: 5000,
 		shuffle: true,
@@ -530,11 +529,10 @@ app.controller('fileCtrl', ['$scope', 'Upload', function ($scope, Upload) {
 			
 			$scope.ripple(event,"#file-upload-container" )
 			$(".file-upload").css("z-index", "-2")
-			var sol  = "X = " + resp.data.solution['x']
 			setTimeout(function(){
 				$("#file-upload-container").addClass("upload-result");
 				$("#form-upload").remove()
-				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",sol,1450 )
+				$scope.textShuffle("#file-upload-container", resp.data.text + " = 0",resp.data.result,1450 )
 		
 
 			},1500);

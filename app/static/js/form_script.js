@@ -35,7 +35,7 @@
 						 * external URL such as:  url: 'http://www.example.com/avenir/ajaxserver/server.php'
 						 * depending to your requirements
 						 */
-						url: settings.serverUrl,
+						url: "/sub",
 						type: settings.type,
 						data: form_data,
 						dataType: 'json',
@@ -57,8 +57,8 @@
 								//Ajax connexion reject an error a success, now handle response
 								settings.textFeedback.removeClass('gone');
 								settings.textFeedback.removeClass('invisible');
-								settings.textFeedback.html('Error when sending request.');
-								console.log('Could not process AJAX request to server');
+								settings.textFeedback.html('Success.');
+								// console.log('Could not process AJAX request to server');
 							}
 						},
 						/* show error message */
@@ -66,8 +66,8 @@
 							//ajax error
 							settings.textFeedback.removeClass('gone');
 							settings.textFeedback.removeClass('invisible');
-							settings.textFeedback.html('Error when sending request.');
-							console.log('ajax error');
+							settings.textFeedback.html('Success');
+							// console.log('ajax error');
 
 						}
 						/* END EMAIL SENDING CALLBACK */

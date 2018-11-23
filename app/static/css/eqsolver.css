@@ -82,7 +82,7 @@ input[type=number] {
 
 @keyframes rippleDropUpload {
   50% {
-    transform: scale(1.3);
+    transform: scale(1.2);
     opacity: 1;
   }
 
@@ -210,4 +210,10 @@ position: relative;
 top: 40%;
 font-family: inherit;
 font-size: 3em;
+}
+
+
+eq-type{
+  text-align: center;
+  font-family: inherit;
 }

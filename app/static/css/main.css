@@ -1844,7 +1844,7 @@ textarea {
               transform: scale(0.8); }
       @media (min-width: 768px) {
         .carousel-swiper-beta .slider-container .illustr {
-          min-height: 200px; } }
+          min-height: 300px; } }
       .carousel-swiper-beta .slider-container .illustr img {
         width: 100%;
         display: block; }
